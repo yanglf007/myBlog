@@ -14,8 +14,8 @@ public class FTPUtils {
 
 
         try {
-        ftpClient.connect("132.232.14.175");
-        ftpClient.login("root", "iamperfact1");
+        ftpClient.connect("***.***.***.***");
+        ftpClient.login("root", "********");
         ftpClient.changeWorkingDirectory("/root/myFile/images/avatar");
         ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
         Thumbnails.of(inputStream).size(400,500);
