@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <title th:text="${title}"></title>
+
+
+
+</head>
+
+<body>
+    <div th:replace="~{fragments/header :: header}">...</div>
+
+    <div class="container">
+
+        <form class="form-signin" action="/register" method="post" th:action="@{/register}" >
+            <input id="id"  type="text" name="id" style="visibility: hidden"><br>
+            用户名：<input id="username" name="username" type="text" class="form-control"><br>
+            姓  名：<input id="name" name="name" type="text" class="form-control"><br>
+            邮  箱：<input id="email" name="email" type="email" class="form-control"><br>
+            密  码：<input id="password" type="password" name="password" class="form-control"><br>
+
+            <div class="checkBox">
+                <label>
+                    <input type="checkbox" value="remember-me">Remember me
+                </label>
+            </div>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        </form>
+    </div>
+
+    <div th:replace="~{fragments/footer :: footer}">...</div>
+
+
+
+</body>
+</html>

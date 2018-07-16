@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+<table data-th-fragment="page">
+	<tr>
+		<td>
+			<nav  data-th-if="${page.totalPages gt 0}" data-th-object="${page}">
+				<ul class="pagination" data-th-if="${page.totalPages le 7}" >
+
+					<!-- 迭代生成页码 -->
+					<li class="page-item" data-th-each="i : ${#numbers.sequence(1, page.totalPages)}"
+						data-th-classappend="${(page.number + 1) eq i} ? 'active' : ''" >
+						<a class="page-link tbpage-item" data-th-attr="pageIndex=${i} - 1" href="javascript:void(0);">
+							<span data-th-text="${i}"></span>
+						</a>
+					</li>
+
+
+				</ul>
+
+
+			</nav>
+
+		</td>
+		<td>共[[${page.totalElements}]]条</td>
+		<td>
+
+			<div class="form-group ">
+				<select class="selectpicker page-size" data-th-attr="pageIndex=${page.number}">
+				<option data-th-each="i : ${#arrays.toIntegerArray({3,5,10,20})}" data-th-value="${i}"
+						data-th-selected="${i eq page.size}" data-th-text="${i}"></option>
+				</select>
+			</div>
+			<!-- 页面大小 -->
+			<!--<select class="custom-select page-size" data-th-attr="pageIndex=${page.number}">
+				<option data-th-each="i : ${#arrays.toIntegerArray({3,5,10,20})}" data-th-value="${i}"
+						data-th-selected="${i eq page.size}" data-th-text="${i}"></option>
+			</select>-->
+		</td>
+
+	</tr>
+</table>
+
+
+</body>
+</html>

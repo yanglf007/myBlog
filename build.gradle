@@ -1,0 +1,50 @@
+buildscript {
+	ext {
+		springBootVersion = '2.0.3.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.yanglf'
+version = '0.0.2'
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+}
+
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter-data-jpa')
+	compile group: 'com.google.guava', name: 'guava', version: '25.1-jre'
+	compile('org.springframework.boot:spring-boot-starter-security')
+	// 添加   Thymeleaf Spring Security 依赖，与 Thymeleaf 版本一致都是 3.x
+	compile('org.thymeleaf.extras:thymeleaf-extras-springsecurity4:3.0.2.RELEASE')
+	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+	compile('org.springframework.boot:spring-boot-starter-web')
+	runtime('mysql:mysql-connector-java')
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+	compile group: 'com.googlecode.log4jdbc', name: 'log4jdbc', version: '1.2'
+	compile group: 'log4j', name: 'log4j', version: '1.2.17'
+	compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
+
+	// https://mvnrepository.com/artifact/com.github.rjeschke/txtmark
+	compile group: 'com.github.rjeschke', name: 'txtmark', version: '0.13'
+	// https://mvnrepository.com/artifact/commons-net/commons-net
+	compile group: 'commons-net', name: 'commons-net', version: '3.6'
+// https://mvnrepository.com/artifact/net.coobird/thumbnailator 图片压缩
+	compile group: 'net.coobird', name: 'thumbnailator', version: '0.4.8'
+
+
+
+}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head th:replace="~{fragments/header :: header}">
+    <title th:text="${title}"></title>
+
+
+
+
+
+</head>
+<body>
+
+
+    <div class="container blog-content-container">
+        <div class="row">
+            <div class="col-md-8">
+                <div th:each="blog : ${blogModel.blogList}">
+                    <div class="card mb-4" >
+                        <div class="card-block" style="margin-left: 10px">
+
+                            <h2 class="card-title">
+							<span>
+			                  <a href="#">
+			                    <img th:src="${blog.user.avator}" style="border-radius: 50% ;width: 40px;height: 40px"
+                                     th:alt="${blog.user.username}">
+			                  </a>
+					        </span><!--/blogs/{username}/editor/{id}-->
+                                <a th:href="'/blogs/'+${blog.user.username} +'/editor/' + ${blog.id}" class="card-link" th:text="${blog.title}">
+
+                                </a></h2>
+
+                            <p class="card-text" th:utext="${blog.htmlContent}"></p>
+                            <div class="card-text row" style="margin-left: 10px">
+                                <a href="/u/waylau" class="card-link" th:text="${blog.user.username}"></a>
+                                <div th:text="发表于+${blog.createTime}" style="margin-left: 10px"></div>
+                                <i class="fa fa-eye" aria-hidden="true" style="margin-left: 10px" >210</i>
+                                <i class="fa fa-heart-o" aria-hidden="true">10</i>
+                                <i class="fa fa-comment-o" aria-hidden="true">110</i>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div th:replace="~{fragments/page :: page}"></div>
+            </div>
+        </div>
+    </div>
+
+<div th:replace="~{fragments/footer :: footer}">...</div>
+
+</body>
+</html>

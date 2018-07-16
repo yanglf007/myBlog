@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" data-th-fragment="header">
+
+<head>
+
+    <!-- CSRF -->
+<!--    <meta name="_csrf" th:content="${_csrf.token}"/>
+    &lt;!&ndash; default header name is X-CSRF-TOKEN &ndash;&gt;
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>-->
+    <link href="../../css/thinker-md.vendor.css" th:href="@{/css/thinker-md.vendor.css}" rel="stylesheet">
+    <link href="../../css/bootstrap-reboot.css" th:href="@{/css/bootstrap-reboot.css}" rel="stylesheet">
+    <link href="../../css/bootstrap-grid.css" th:href="@{/css/bootstrap-grid.css}" rel="stylesheet">
+
+    <link href="../../css/bootstrap-table.css" th:href="@{/css/bootstrap-table.css}" rel="stylesheet">
+
+    <link href="../../css/blog.css" th:href="@{/css/blog.css}" rel="stylesheet">
+    <link href="../../css/toastr.css" th:href="@{/css/toastr.css}" rel="stylesheet">
+    <link href="../../css/cropbox.css" th:href="@{/css/cropbox.css}" rel="stylesheet">
+    <link href="../../css/editormd.min.css" th:href="@{/css/editormd.min.css}" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.1.0/css/bootstrap.min.css">
+
+
+    <style type="text/css">
+        .btn:focus,
+        .btn:active:focus,
+        .btn.active:focus,
+        .btn.focus,
+        .btn:active.focus,
+        .btn.active.focus {
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+
+<header class="blog-header bg-inverse">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark navbar-static-top ">
+        <div class="container">
+            <div class="navbar-header">
+              <!--  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                        aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>-->
+                <a class="navbar-brand" href="#">博客家园</a>
+
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/index">首页</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#">Disabled</a>
+                    </li>
+                </ul>
+
+                <div sec:authorize="isAuthenticated()" class="row">
+                    <div class="dropdown">
+                        <a class="dropdown-toggle" href="/personal/homePage"
+                           th:href="@{'/personal/'+${#authentication.name}}"
+                           data-toggle="dropdown">
+                            <div  class="btn btn-link" style="outline: none;border-width: 0px">
+                                <b><span sec:authentication="name"></span></b>
+                            </div>
+                        </a>
+
+                        <div class="dropdown-menu" >
+                            <a class="dropdown-item" href="/personal/homePage" style="border-width:0px"
+                               th:href="@{'/personal/'+${#authentication.name}}">个人主页</a>
+                            <a class="dropdown-item" href="/personal/homePage/profile" style="border-width: 0px"
+                               th:href="@{'/user/'+${#authentication.name}+'/profile'}">个人设置</a>
+                        </div>
+                    </div>
+
+
+                    <div>
+                        <a href="/blogs/editor" th:href="'/blogs/'+${#authentication.name}+'/editor'" style="border-width:0px"
+                           class="btn btn-outline-success">写博客</a>
+
+                    </div>
+                    <form action="/logout" th:action="@{/logout}" method="post">
+                        <input type="submit" value="退出" class="btn btn-outline-success" style="border-width:0px">
+                    </form>
+
+                </div>
+
+                <div sec:authorize="isAnonymous()">
+                    <a href="/login" class="btn btn-outline-success" type="submit">登录</a>
+                    <a href="/register" class="btn btn-outline-success" type="submit">注册</span></a>
+                </div>
+
+            </div><!--/.nav-collapse -->
+        </div>
+
+    </nav>
+</header>
+
+
+</body>
+</html>

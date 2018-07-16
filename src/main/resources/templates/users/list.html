@@ -1,0 +1,52 @@
+<div class="caret-header bg-dark font-write">
+
+    <div class=" col-md-6" >
+        <input type="text" class="form-control-static"
+               style="display: block ;float: left" width="70%" id="searchName" placeholder="输入用户名进行搜索" >
+        <input class="btn btn-primary" type="button" value="search" id="searchNameBtn" style="float: left ;margin-left: 5px">
+            <i class="fa fa-search" aria-hidden="true"></i>
+        </input>
+
+        <input class="btn btn-primary" type="button" value="add" id="addUser" style="float: left ;margin-left: 5px">
+        <i class="fa fa-search" aria-hidden="true"></i>
+        </input>
+    </div>
+
+    <div id="mainContainer" class="container">
+        <div id="mainContainerReplace" class="row" >
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th data-field="id">ID</th>
+                        <th data-field="username">用户名</th>
+                        <th data-field="email">邮箱</th>
+                        <th data-field="createTime">创建时间</th>
+                        <th data-field="status">状态</th>
+                    </tr>
+
+
+                </thead>
+                <tbody>
+                    <tr th:each="user : ${userModel.userList}">
+                        <td th:text="${user.id}"></td>
+                        <td th:text="${user.username}"></td>
+                        <td th:text="${user.email}"></td>
+                        <td th:text="${user.createTime}"></td>
+                        <th th:text="${user.status}"></th>
+                    </tr>
+                </tbody>
+            </table>
+            <div th:replace="~{fragments/page :: page}"></div>
+
+        </div>
+
+
+
+    </div>
+
+</div>
+
+
+
+
+<script src="../static/js/user/main.js" th:src="@{/js/user/main.js}"></script>

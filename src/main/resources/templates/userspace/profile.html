@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head th:replace="~{fragments/header :: header}">
+</head>
+<body>
+
+<div class="container blog-content-container">
+    <div class="row">
+        <!-- 左边-->
+        <div class="col-md-4">
+            <div class="row">
+                <div class="col-md-12">
+                    <span>
+                        <a class="blog-edit-avator" data-toggle="modal" data-target="#flipFlop"
+                        role="button" data-th-attr="userName=${userModel.user.username}">
+                            <img th:src="${userModel.user.avator}==null? '/images/avator-default.jpeg':${userModel.user.avator}" class="blog-avatar blog-avatar-230">
+                        </a>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <!--右边-->
+
+        <div class="col-md-8">
+            <h5 class="card-header">个人设置</h5>
+            <div class="card-block">
+                <form class="form-group" th:object="${userModel.user}" id="userForm"
+                      th:action="'/user'+${#authentication.name}+'/profile'" method="post">
+                    <input type="hidden" id="userId" name="id" th:value="*{id}">
+                    <div class="form-group">
+                        <label for="username">账号</label>
+                        <input class="form-control" id="username" name="username" type="text"
+                        th:value="*{username}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">邮箱</label>
+                        <input class="form-control" id="email" name="email" type="email"
+                               th:value="*{email}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="name">姓名</label>
+                        <input class="form-control" id="name" name="name" type="text"
+                               th:value="*{name}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">密码</label>
+                        <input class="form-control" id="password" name="password" type="password"
+                               th:value="*{password}">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" value="提交" class="btn btn-primary">
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- The modal -->
+<div class="modal fade" id="flipFlop" tabindex="-1" role="dialog"
+     aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="modalLabel">编辑头像</h4>
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+
+            </div>
+            <div class="modal-body" id="avatorFormContainer"></div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" data-dismiss="modal" id="submitEditAvator"
+                        data-th-attr="userName=${userModel.user.username}">提交</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div th:replace="~{fragments/footer :: footer}">...</div>
+
+</body>
+</html>
