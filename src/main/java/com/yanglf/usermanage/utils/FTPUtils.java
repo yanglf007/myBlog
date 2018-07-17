@@ -10,14 +10,16 @@ import java.io.InputStream;
 public class FTPUtils {
    static FTPClient ftpClient = new FTPClient();
 
-    public static void upload(InputStream inputStream,String fileName,String path){
+
+    public static void upload(InputStream inputStream,String fileName,String path,
+                              String remoteIP,String ftpUser,String ftpPwd){
 
 
 
         try {
             if (!ftpClient.isConnected()){
-                ftpClient.connect("132.232.14.175");
-                ftpClient.login("root", "iamperfact1");
+                ftpClient.connect(remoteIP);
+                ftpClient.login(ftpUser, ftpPwd);
             }
 
         ftpClient.changeWorkingDirectory(path);

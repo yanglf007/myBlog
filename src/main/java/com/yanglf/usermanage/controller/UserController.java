@@ -40,6 +40,13 @@ public class UserController {
 
     @Value("${avatarPath}")
     private String avatarPath;
+    @Value("${remoteIP}")
+    private  String remoteIP;
+    @Value("${ftpUser}")
+    private  String ftpUser;
+    @Value("${ftpPwd}")
+    private  String ftpPwd;
+
     @Autowired
     private UserDetailsService userDetailsService;
     @GetMapping("/register")
@@ -139,7 +146,7 @@ public class UserController {
 
         InputStream inputStream = uploadFile.getInputStream();
         String filename = UUID.randomUUID().toString().replaceAll("-", "")+".jpg";
-        FTPUtils.upload(inputStream, filename,avatarPath);
+        FTPUtils.upload(inputStream, filename,avatarPath,remoteIP,ftpUser,ftpPwd);
         return ResponseEntity.status(HttpStatus.OK).body("http://132.232.14.175/avatar/"+filename);
     }
 }

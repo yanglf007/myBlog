@@ -17,3 +17,6 @@ server:
   port: 8080
 avatarPath: /root/myFile/images/avatar
 blogPicPath: /root/myFile/images/blog
+remoteIP: 132.232.14.175
+ftpUser: root
+ftpPwd: iamperfact1

@@ -21,8 +21,15 @@ public class PicController {
 
     @Value("${blogPicPath}")
     private String blogPicPath;
-    @RequestMapping("/editormdPic")
 
+    @Value("${remoteIP}")
+    private  String remoteIP;
+    @Value("${ftpUser}")
+    private  String ftpUser;
+    @Value("${ftpPwd}")
+    private  String ftpPwd;
+
+    @RequestMapping("/editormdPic")
     public @ResponseBody Map editormdPic (@RequestParam(value = "editormd-image-file", required = true) MultipartFile file,
                                           HttpServletRequest request) throws Exception{
 
@@ -33,7 +40,7 @@ public class PicController {
 
         String fileName = UUID.randomUUID().toString().replaceAll("-", "")+suffix;
 
-        FTPUtils.upload(file.getInputStream(), fileName,blogPicPath);
+        FTPUtils.upload(file.getInputStream(), fileName,blogPicPath,remoteIP,ftpUser,ftpPwd);
 
         //保存
 
