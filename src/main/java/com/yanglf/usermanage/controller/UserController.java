@@ -6,6 +6,7 @@ import com.yanglf.usermanage.utils.FTPUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -37,6 +38,8 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @Value("${avatarPath}")
+    private String avatarPath;
     @Autowired
     private UserDetailsService userDetailsService;
     @GetMapping("/register")
@@ -73,7 +76,7 @@ public class UserController {
                              Model model){
 
         logger.info("username: "+username+" pageIndex:"+pageIndex+" pageSize:"+pageSize);
-        Pageable pageable = new PageRequest(pageIndex, pageSize);
+        Pageable pageable = PageRequest.of(pageIndex, pageSize);
         Page<BlogUser> page = userService.findBlogUserByUserNameLike(username, pageable);
         List<BlogUser> content = page.getContent();
         logger.info("page:",page.toString());
@@ -133,25 +136,10 @@ public class UserController {
     @PostMapping("{username}/avator/upload")
     @PreAuthorize("authentication.name.equals(#username)")
     public ResponseEntity<String> upload(@RequestParam("file") MultipartFile uploadFile, @PathVariable String username, HttpServletRequest request) throws IOException {
-      /*  File directory = new File("");// 参数为空
-        String courseFile = directory.getCanonicalPath()+"\\src\\main\\resources\\static\\images\\avator\\";
-*/
 
-
-       String filePath= request.getSession().getServletContext().getRealPath("")+"images\\avator\\";
-        System.out.println(uploadFile.getOriginalFilename()+"-------fileName");
-        filePath=filePath+UUID.randomUUID().toString().replaceAll("-", "")+".jpg";
-                //+uploadFile.getOriginalFilename().substring(uploadFile.getOriginalFilename().lastIndexOf("."));
-    /*    System.out.println(filePath+"***********");
-        File file = new File(filePath);
-        try {
-            uploadFile.transferTo(file);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
         InputStream inputStream = uploadFile.getInputStream();
         String filename = UUID.randomUUID().toString().replaceAll("-", "")+".jpg";
-        FTPUtils.upload(inputStream, filename);
+        FTPUtils.upload(inputStream, filename,avatarPath);
         return ResponseEntity.status(HttpStatus.OK).body("http://132.232.14.175/avatar/"+filename);
     }
 }

@@ -6,7 +6,7 @@ spring:
     password: root
   thymeleaf:
     cache: false
-    mode: HTML5
+    mode: HTML
     encoding: UTF-8
   jpa:
     show-sql: true
@@ -15,3 +15,5 @@ spring:
     database-platform: org.hibernate.dialect.MySQL5Dialect
 server:
   port: 8080
+avatarPath: /root/myFile/images/avatar
+blogPicPath: /root/myFile/images/blog

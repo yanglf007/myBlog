@@ -39,9 +39,9 @@ public class MainController {
     @GetMapping("/index")
     public ModelAndView index( @RequestParam(value = "pageIndex",required = false,defaultValue = "0") int pageIndex,
                                @RequestParam(value = "pageSize",required = false,defaultValue = "5") int pageSize,Model model){
-        Sort sort = new Sort(new Sort.Order(Sort.Direction.DESC,"createTime"));
+        Sort sort = new Sort(Sort.Direction.DESC,"createTime");
 
-        Pageable pageable = new PageRequest(pageIndex, pageSize,sort);
+        Pageable pageable = PageRequest.of(pageIndex, pageSize,sort);
 
         Page<Blog> page = blogService.findAll(pageable);
         List<Blog> blogList = page.getContent();

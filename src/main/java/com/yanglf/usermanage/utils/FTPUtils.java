@@ -10,13 +10,17 @@ import java.io.InputStream;
 public class FTPUtils {
    static FTPClient ftpClient = new FTPClient();
 
-    public static void upload(InputStream inputStream,String fileName){
+    public static void upload(InputStream inputStream,String fileName,String path){
+
 
 
         try {
-        ftpClient.connect("***.***.***.***");
-        ftpClient.login("root", "********");
-        ftpClient.changeWorkingDirectory("/root/myFile/images/avatar");
+            if (!ftpClient.isConnected()){
+                ftpClient.connect("132.232.14.175");
+                ftpClient.login("root", "iamperfact1");
+            }
+
+        ftpClient.changeWorkingDirectory(path);
         ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
         Thumbnails.of(inputStream).size(400,500);
         ftpClient.storeFile(fileName, inputStream);
