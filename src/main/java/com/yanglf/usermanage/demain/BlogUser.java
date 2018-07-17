@@ -22,6 +22,7 @@ public class BlogUser implements UserDetails,Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(length = 20)
     private Integer id;
 
     private String name;

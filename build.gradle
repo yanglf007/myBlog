@@ -3,6 +3,8 @@ buildscript {
 		springBootVersion = '2.0.3.RELEASE'
 	}
 	repositories {
+		maven {url 'http://maven.aliyun.com/nexus/content/groups/public/'}
+		mavenLocal()
 		mavenCentral()
 	}
 	dependencies {
@@ -45,6 +47,12 @@ dependencies {
 // https://mvnrepository.com/artifact/net.coobird/thumbnailator 图片压缩
 	compile group: 'net.coobird', name: 'thumbnailator', version: '0.4.8'
 
+/*
+	// https://mvnrepository.com/artifact/net.sf.json-lib/json-lib
+	compile group: 'net.sf.json-lib', name: 'json-lib', version: '2.4',classifier: "jdk15"
+*/
+
+	compile('net.sf.json-lib:json-lib:2.4:jdk15')
 
 
 }

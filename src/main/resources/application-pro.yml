@@ -6,7 +6,7 @@ spring:
     password: 745412
   thymeleaf:
     cache: false
-    mode: HTML5
+    mode: HTML
     encoding: UTF-8
   jpa:
     show-sql: true
@@ -16,3 +16,6 @@ spring:
 
 server:
   port: 8080
+
+avatarPath: /root/myFile/images/avatar
+blogPicPath: /root/myFile/images/blog

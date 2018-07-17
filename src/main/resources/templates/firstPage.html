@@ -32,7 +32,20 @@
             /**上传图片相关配置如下*/
             imageUpload : true,
             imageFormats : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
-            imageUploadURL : "/smart-api/upload/editormdPic/",//注意你后端的上传图片服务地址
+            imageUploadURL : "/pic/editormdPic/",//注意你后端的上传图片服务地址
+            onload : function() {
+
+            console.log('onload', this);
+            console.log('onload', this);
+            //this.fullscreen();
+            //this.unwatch();
+            //this.watch().fullscreen();
+
+            //this.setMarkdown("#PHP");
+            //this.width("100%");
+            //this.height(480);
+            //this.resize("100%", 640);
+        }
         });
     });
 </script>

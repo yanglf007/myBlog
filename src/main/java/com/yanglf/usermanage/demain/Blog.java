@@ -10,10 +10,12 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 
 @Entity
+
 public class Blog implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(length = 20)
     private Long id;
 
     @NotEmpty(message = "标题不能为空")
