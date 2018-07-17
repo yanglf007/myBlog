@@ -21,7 +21,7 @@
 </style>
 <div class="container blog-content-container">
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card mb-4">
                 <div class="card-block" th:object="${blogModel.blog}">
                     <input type="hidden" name="id" th:value="*{id}">
@@ -31,12 +31,18 @@
                     <textarea class="blog-textarea" placeholder="请填写摘要" id="summary" name="summary"
                               th:text="*{summary}" maxlength="300"></textarea>
                     <hr>
-                    <textarea id="md" data-provide="markdown" data-hidden-buttons="cmdImage"
+             <!--       <textarea id="md" data-provide="markdown" data-hidden-buttons="cmdImage"
 
-                    name="content"  th:text="*{content}"></textarea>
+                    name="content"  th:text="*{content}"></textarea>-->
+
 
                 </div>
 
+            </div>
+            <div id="my-editormd" >
+                <textarea id="my-editormd-markdown-doc" th:text="*{content}"
+                          name="content" style="display:none;"></textarea>
+                <textarea id="my-editormd-html-code" name="my-editormd-html-code" style="display:none;"></textarea>
             </div>
         </div>
 
@@ -68,6 +74,27 @@
 
 <script src="../../js/thinker-md.vendor.min.js" th:src="@{/js/thinker-md.vendor.min.js}"></script>
 <script  src="/static/js/userspace/editBlog.js" th:src="@{/js/userspace/editBlog.js}"></script>
+<script type="text/javascript">
+    $(function() {
+        editormd("my-editormd", {//注意1：这里的就是上面的DIV的id属性值
+            width   : "100%",
+            height  : 640,
+            syncScrolling : "single",
+            path    : "/js/mdeditor/lib/",//注意2：你的路径
+            saveHTMLToTextarea : true,//注意3：这个配置，方便post提交表单
+            /**上传图片相关配置如下*/
+            imageUpload : true,
+            imageFormats : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+            imageUploadURL : "/pic/editormdPic/",//注意你后端的上传图片服务地址
+            onload : function() {
+
+                console.log('onload', this);
+                console.log('onload', this);
+
+            }
+        });
+    });
+</script>
 
 </body>
 </html>
