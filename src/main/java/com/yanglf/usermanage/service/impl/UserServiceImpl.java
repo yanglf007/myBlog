@@ -7,6 +7,7 @@ import com.yanglf.usermanage.utils.MD5Utils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -43,6 +44,7 @@ public class UserServiceImpl implements UserService,UserDetailsService{
     }
 
     @Override
+    @Cacheable
     public BlogUser findById(Integer id) {
         return userRepository.findById(id).get();
     }
@@ -86,6 +88,7 @@ public class UserServiceImpl implements UserService,UserDetailsService{
     }
 
     @Override
+    @Cacheable(cacheNames = "UserDetailsloadUserByUsername")
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return userRepository.findBlogUserByUsername(username);
     }
