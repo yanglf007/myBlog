@@ -26,9 +26,6 @@ public class UserServiceImpl implements UserService,UserDetailsService{
     @Override
     public void save(BlogUser user) {
         logger.info(user.toString());
-       /* String salt = UUID.randomUUID().toString().replace("-", "");
-        user.setSolt(salt);
-        user.setPassword(MD5Utils.encode(user.getPassword()+salt));*/
         userRepository.save(user);
     }
 
@@ -88,7 +85,6 @@ public class UserServiceImpl implements UserService,UserDetailsService{
     }
 
     @Override
-    @Cacheable(cacheNames = "UserDetailsloadUserByUsername")
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return userRepository.findBlogUserByUsername(username);
     }

@@ -10,6 +10,7 @@ import java.util.List;
 @Service
 public interface UserService {
 
+
     void save(BlogUser user);
     void delete(Integer id);
     BlogUser update(BlogUser user);

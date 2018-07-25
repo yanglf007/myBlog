@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head th:replace="~{fragments/header :: header}">
     <title th:text="${title}"></title>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
@@ -9,28 +10,34 @@
 
 </head>
 <body>
-<style type="text/css">
-
-    @import "/css/emoji/nature.css";
-    @import "/css/emoji/object.css";
-    @import "/css/emoji/people.css";
-    @import "/css/emoji/place.css";
-    @import "/css/emoji/Sysmbols.css";
-    @import "/css/emoji/twemoji.css";
-
-</style>
 <div class="container blog-content-container">
     <div class="row">
         <div class="col-md-12">
-            <div class="card mb-4">
+            <div >
                 <div class="card-block" th:object="${blogModel.blog}">
                     <input type="hidden" name="id" th:value="*{id}">
-                    <input type="text" class="form-control" placeholder="请填写博客标题"
-                           id="title" name="title" th:text="*{title}" maxlength="50">
-                    <hr>
+                    <div class="row">
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" placeholder="请填写博客标题"
+                                   id="title" name="title" th:text="*{title}" maxlength="50">
+                        </div>
+
+
+                        <div class="col-md-3">
+                            <button class="btn btn-primary float-right" id="submitBlog"
+                                    th:attr="username=${#authentication.name}">发布</button>
+
+                            <button class="btn btn-primary float-right" id="saveBlog"
+                                    th:attr="username=${#authentication.name}">保存</button>
+                        </div>
+
+                    </div>
+
+
+
                     <textarea class="blog-textarea" placeholder="请填写摘要" id="summary" name="summary"
-                              th:text="*{summary}" maxlength="300"></textarea>
-                    <hr>
+                              th:text="*{summary}" maxlength="300" style="margin-top: 10px"></textarea>
+
              <!--       <textarea id="md" data-provide="markdown" data-hidden-buttons="cmdImage"
 
                     name="content"  th:text="*{content}"></textarea>-->
@@ -47,20 +54,6 @@
         </div>
 
 
-        <div class="col-md-4" >
-            <div class="card">
-
-                <div class="row mt-1">
-                    <div class="col-md-12">
-                        <button class="btn btn-primary float-right" id="submitBlog"
-                        th:attr="username=yanglf007">发布</button>
-
-
-                    </div>
-
-                </div>
-            </div>
-        </div>
     </div>
 
 
@@ -71,8 +64,6 @@
 
 
 <div th:replace="~{fragments/footer :: footer}">...</div>
-
-<script src="../../js/thinker-md.vendor.min.js" th:src="@{/js/thinker-md.vendor.min.js}"></script>
 <script  src="/static/js/userspace/editBlog.js" th:src="@{/js/userspace/editBlog.js}"></script>
 <script type="text/javascript">
     $(function() {

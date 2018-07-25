@@ -26,11 +26,12 @@
                                      th:alt="${blog.user.username}">
 			                  </a>
 					        </span><!--/blogs/{username}/editor/{id}-->
-                                <a th:href="'/blogs/'+${blog.user.username} +'/editor/' + ${blog.id}" class="card-link" th:text="${blog.title}">
+                                <a th:href="'/blogs/'+${blog.user.username} +'/' + ${blog.id}" class="card-link" th:text="${blog.title}">
 
                                 </a></h2>
 
-                            <p class="card-text" th:utext="${blog.htmlContent}"></p>
+                            <p class="card-text" th:text="${blog.summary}"></p>
+                            <!--<p class="card-text" th:utext="${blog.htmlContent}"></p>-->
                             <div class="card-text row" style="margin-left: 10px">
                                 <a href="/u/waylau" class="card-link" th:text="${blog.user.username}"></a>
                                 <div th:text="发表于+${blog.createTime}" style="margin-left: 10px"></div>

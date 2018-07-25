@@ -19,12 +19,12 @@ public class Blog implements Serializable{
     private Long id;
 
     @NotEmpty(message = "标题不能为空")
-    @Size(min = 2,max = 150)
+    @Size(min = 2,max = 300)
     @Column(length = 150,nullable = false)
     private String title;
 
     @NotEmpty(message = "摘要不能为空")
-    @Size(min = 2,max = 300)
+    @Size(min = 10,max = 500)
     @Column(nullable = false)
     private String summary;
 

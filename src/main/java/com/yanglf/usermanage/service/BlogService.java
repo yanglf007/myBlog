@@ -6,4 +6,5 @@ import org.springframework.data.domain.Pageable;
 
 public interface BlogService {
     Page<Blog> findAll(Pageable pageable);
+    void save(Blog blog);
 }

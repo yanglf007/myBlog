@@ -3,6 +3,7 @@ package com.yanglf.usermanage.controller;
 import com.yanglf.usermanage.demain.Blog;
 import com.yanglf.usermanage.demain.BlogUser;
 import com.yanglf.usermanage.repository.BlogRepository;
+import com.yanglf.usermanage.service.BlogService;
 import com.yanglf.usermanage.vo.ResponseMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +24,10 @@ public class BlogController {
     @Autowired
     private BlogRepository blogRepository;
 
+    @Autowired
+    private BlogService blogService;
+
+
     @GetMapping("/blogs/{username}/editor")
     public ModelAndView createBolg(@PathVariable String username, Model model){
         model.addAttribute("blog",new Blog());
@@ -34,7 +39,7 @@ public class BlogController {
     public ResponseEntity<ResponseMessage> save(@PathVariable String username, @RequestBody Blog blog){
         BlogUser user = (BlogUser) userDetailsService.loadUserByUsername(username);
         blog.setUser(user);
-        blogRepository.save(blog);
+        blogService.save(blog);
         String redirectUrl = "/blogs/"+username+"/"+blog.getId();
         return ResponseEntity.ok().body(new ResponseMessage(true,"处理成功",redirectUrl));
     }
