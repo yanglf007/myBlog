@@ -1,6 +1,5 @@
 package com.yanglf.usermanage.demain;
 
-import com.github.rjeschke.txtmark.Processor;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -89,9 +88,11 @@ public class Blog implements Serializable{
 
     public void setContent(String content) {
         this.content = content;
-        this.htmlContent = Processor.process(content);
     }
 
+    public void setHtmlContent(String htmlContent) {
+        this.htmlContent = htmlContent;
+    }
 
     public String getHtmlContent() {
         return htmlContent;

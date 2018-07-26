@@ -34,6 +34,12 @@ public class BlogController {
         return new ModelAndView("userspace/edit","blogModel",model);
     }
 
+    /**
+     * 发布博客
+     * @param username
+     * @param blog
+     * @return
+     */
     @PostMapping("/blogs/{username}/editor")
     @PreAuthorize("authentication.name.equals(#username)")
     public ResponseEntity<ResponseMessage> save(@PathVariable String username, @RequestBody Blog blog){

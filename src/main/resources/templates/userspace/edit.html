@@ -19,7 +19,7 @@
                     <div class="row">
                         <div class="col-md-9">
                             <input type="text" class="form-control" placeholder="请填写博客标题"
-                                   id="title" name="title" th:text="*{title}" maxlength="50">
+                                   id="title" name="title" th:value="*{title}" maxlength="50">
                         </div>
 
 
@@ -47,8 +47,8 @@
 
             </div>
             <div id="my-editormd" >
-                <textarea id="my-editormd-markdown-doc" th:text="*{content}"
-                          name="content" style="display:none;"></textarea>
+                <textarea id="my-editormd-markdown-doc" th:inline="text"
+                          name="content" style="display:none;" >[[${blogModel.blog.content}]]</textarea>
                 <textarea id="my-editormd-html-code" name="my-editormd-html-code" style="display:none;"></textarea>
             </div>
         </div>

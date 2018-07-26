@@ -10,9 +10,9 @@
 
 <div th:replace="~{fragments/header :: header}">...</div>
 
-    <div class="container blog-content-container">
+    <div class="container blog-content-container col-md-10" >
 
-        <div class="row col-md-12">
+        <div class="row col-md-10">
             <div class="card-block">
                 <h2 class="card-title">
 							<span>
@@ -30,7 +30,7 @@
                     <i class="fa fa-eye" aria-hidden="true">[[${blogModel.reading}]]</i>
                     <i class="fa fa-heart-o" aria-hidden="true">[[${blogModel.likes}]]</i>
                     <i class="fa fa-comment-o" aria-hidden="true">[[${blogModel.comments}]]</i>
-                    <a href="/u/waylau" th:if="${isBlogOwner}" th:href="'/u/' + ${blogModel.user.username}+ '/blogs/edit/'+ ${blogModel.id}" class="btn btn-primary float-right">编辑</a>
+                    <a href="/u/waylau" th:if="${isBlogOwner}" th:href="'/blogs/'+${blogModel.user.username}+'/editor/'+ ${blogModel.id}" class="btn btn-primary float-right">编辑</a>
                     <a href="javascript:void(0)" th:if="${isBlogOwner}" th:attr="blogUrl='/u/' + ${blogModel.user.username} + '/blogs/'+ ${blogModel.id}"class="btn btn-primary float-right blog-delete-blog">删除</a>
                 </div>
                 <hr>

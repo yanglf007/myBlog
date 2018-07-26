@@ -15,7 +15,8 @@ $(function () {
                 "id":Number($("#id").val()),
                 "title":$("#title").val(),
                 "summary":$("#summary").val(),
-                "content":$("#my-editormd-markdown-doc").val()
+                "content":$("#my-editormd-markdown-doc").val(),
+                "htmlContent":$(".prettyprinted").prop('outerHTML')
             }),
          /*   beforeSend: function(request) {
                 request.setRequestHeader(csrfHeader, csrfToken); // 添加  CSRF Token
