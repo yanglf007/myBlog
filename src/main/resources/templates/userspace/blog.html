@@ -10,7 +10,10 @@
 
 <div th:replace="~{fragments/header :: header}">...</div>
 
-   <div class="col-md-10">
+<div>
+
+
+   <div class="col-md-10" style="min-height: 800px">
 
         <div>
             <div class="card-block">
@@ -38,17 +41,21 @@
             </div>
         </div>
 
+       <div  role="main">
+           <div class="col-md-8" style="display: block">
+               <article class="post-content" th:utext="${blogModel.htmlContent}">
+               </article>
+           </div>
 
+       </div>
 
     </div>
-<div  role="main">
-    <div class="col-md-8" style="display: block">
-        <article class="post-content" th:utext="${blogModel.htmlContent}">
-        </article>
+
+    <div>
+        <div th:replace="~{fragments/footer :: footer}">...</div>
     </div>
+
+
 </div>
-
-<div th:replace="~{fragments/footer :: footer}">...</div>
-
 </body>
 </html>
