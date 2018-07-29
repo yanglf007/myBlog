@@ -7,16 +7,22 @@ $(function () {
     $("#submitBlog").click(function () {
 /*        var csrfToken = $("meta[name='_csrf']").attr("content");
         var csrfHeader = $("meta[name='_csrf_header']").attr("content");*/
+        var id;
+        if ($("#id").val()==""){
+            id = -1;
+        }else {
+           id = Number($("#id").val());
+        }
         $.ajax({
             url:"/blogs/"+$(this).attr("username")+"/editor",
             type:'POST',
             contentType:"application/json; charset=utf-8",
             data:JSON.stringify({
-                "id":Number($("#id").val()),
+                "id":id,
                 "title":$("#title").val(),
                 "summary":$("#summary").val(),
                 "content":$("#my-editormd-markdown-doc").val(),
-                "htmlContent":$(".prettyprinted").prop('outerHTML')
+                "htmlContent":$(".editormd-preview").prop('outerHTML')
             }),
          /*   beforeSend: function(request) {
                 request.setRequestHeader(csrfHeader, csrfToken); // 添加  CSRF Token

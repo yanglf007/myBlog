@@ -38,7 +38,7 @@ public class MainController {
 
     @GetMapping("/index")
     public ModelAndView index( @RequestParam(value = "pageIndex",required = false,defaultValue = "0") int pageIndex,
-                               @RequestParam(value = "pageSize",required = false,defaultValue = "5") int pageSize,Model model){
+                               @RequestParam(value = "pageSize",required = false,defaultValue = "4") int pageSize,Model model){
         Sort sort = new Sort(Sort.Direction.DESC,"createTime");
 
         Pageable pageable = PageRequest.of(pageIndex, pageSize,sort);

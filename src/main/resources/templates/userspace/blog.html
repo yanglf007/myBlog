@@ -10,11 +10,11 @@
 
 <div th:replace="~{fragments/header :: header}">...</div>
 
-    <div class="container blog-content-container col-md-10" >
+   <div class="col-md-10">
 
-        <div class="row col-md-10">
+        <div>
             <div class="card-block">
-                <h2 class="card-title">
+                <h2 class="card-title" style="margin-left: 200px">
 							<span>
 			                  <a href="#" title="" th:href="'/u/' + ${blogModel.user.username}"  th:title="${blogModel.user.username}" >
 			                    <img src="/images/avatar-defualt.jpg" th:src="${blogModel.user.avator} == null ? '/images/avatar-defualt.jpg' : ${blogModel.user.avator}" class="blog-avatar-50">
@@ -25,25 +25,28 @@
 
                     </a>
                 </h2>
-                <div class="card-text">
-                    <a href="/u/waylau" th:href="'/u/' + ${blogModel.user.username}" class="card-link" th:text="${blogModel.user.username}" >waylau</a> 发表于 [[${#dates.format(blogModel.createTime, 'yyyy-MM-dd HH:mm')}]]
+                <div class="card-text row" style="margin:  auto;margin-left: 200px">
+                    <a href="/u/waylau" th:href="'/u/' + ${blogModel.user.username}" class="card-link" th:text="${blogModel.user.username}" th:inline="text">waylau</a> 发表于 [[${#dates.format(blogModel.createTime, 'yyyy-MM-dd HH:mm:ss')}]]
                     <i class="fa fa-eye" aria-hidden="true">[[${blogModel.reading}]]</i>
                     <i class="fa fa-heart-o" aria-hidden="true">[[${blogModel.likes}]]</i>
                     <i class="fa fa-comment-o" aria-hidden="true">[[${blogModel.comments}]]</i>
-                    <a href="/u/waylau" th:if="${isBlogOwner}" th:href="'/blogs/'+${blogModel.user.username}+'/editor/'+ ${blogModel.id}" class="btn btn-primary float-right">编辑</a>
+                    <a style="margin-left: 40%" href="javascript:void(0)" th:if="${isBlogOwner}" th:href="'/blogs/'+${blogModel.user.username}+'/editor/'+ ${blogModel.id}" class="btn btn-primary float-right">编辑</a>
                     <a href="javascript:void(0)" th:if="${isBlogOwner}" th:attr="blogUrl='/u/' + ${blogModel.user.username} + '/blogs/'+ ${blogModel.id}"class="btn btn-primary float-right blog-delete-blog">删除</a>
                 </div>
                 <hr>
 
-
             </div>
         </div>
-        <br>
-        <p class="card-text" th:text="${blogModel.summary}"></p>
-        <article class="post-content" th:utext="${blogModel.htmlContent}">
 
+
+
+    </div>
+<div  role="main">
+    <div class="col-md-8" style="display: block">
+        <article class="post-content" th:utext="${blogModel.htmlContent}">
         </article>
     </div>
+</div>
 
 <div th:replace="~{fragments/footer :: footer}">...</div>
 
