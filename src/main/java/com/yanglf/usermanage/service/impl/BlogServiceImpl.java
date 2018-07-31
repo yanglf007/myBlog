@@ -5,7 +5,6 @@ import com.yanglf.usermanage.repository.BlogRepository;
 import com.yanglf.usermanage.service.BlogService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
@@ -49,7 +48,6 @@ public class BlogServiceImpl implements BlogService{
     }
 
     @Override
-    @CacheEvict(value = "blogCache")
     public void remove(Long id) {
         blogRepository.deleteById(id);
     }

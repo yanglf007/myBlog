@@ -11,9 +11,13 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/")
@@ -87,4 +91,14 @@ public class BlogController {
 
         return "userspace/blog";
     }
+
+    /**
+     * 删除博客
+     */
+    @GetMapping("/blogs/{id}")
+    public ResponseEntity<ResponseMessage>  delete(@PathVariable Long id){
+        blogService.remove(id);
+        return ResponseEntity.ok().body(new ResponseMessage(true,"删除成功！","/index"));
+    }
+
 }

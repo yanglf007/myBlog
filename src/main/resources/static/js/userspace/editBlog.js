@@ -22,7 +22,7 @@ $(function () {
                 "title":$("#title").val(),
                 "summary":$("#summary").val(),
                 "content":$("#my-editormd-markdown-doc").val(),
-                "htmlContent":$(".editormd-preview").prop('outerHTML')
+                "htmlContent":$(".markdown-body").prop('outerHTML')
             }),
          /*   beforeSend: function(request) {
                 request.setRequestHeader(csrfHeader, csrfToken); // 添加  CSRF Token
@@ -50,6 +50,7 @@ $(function () {
         imgurl: 'http://localhost:8080',
         base64url: 'http://localhost:8080'
     });
+
 
 
 });
