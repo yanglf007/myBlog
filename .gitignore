@@ -17,6 +17,8 @@
 *.iml
 *.ipr
 *.yml
+*Test.java
+*test.java
 /out/
 ### NetBeans ###
 /nbproject/private/

@@ -23,7 +23,7 @@ public class Blog implements Serializable{
     private String title;
 
     @NotEmpty(message = "摘要不能为空")
-    @Size(min = 10,max = 500)
+    @Size(min = 5,max = 500)
     @Column(nullable = false)
     private String summary;
 
