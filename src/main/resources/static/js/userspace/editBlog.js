@@ -22,7 +22,7 @@ $(function () {
                 "title":$("#title").val(),
                 "summary":$("#summary").val(),
                 "content":$("#my-editormd-markdown-doc").val(),
-                "htmlContent":$(".markdown-body").prop('outerHTML')
+                "htmlContent":$(".editormd-preview").prop('outerHTML')
             }),
          /*   beforeSend: function(request) {
                 request.setRequestHeader(csrfHeader, csrfToken); // 添加  CSRF Token

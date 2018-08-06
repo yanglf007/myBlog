@@ -55,6 +55,9 @@ dependencies {
 */
 
 	compile('net.sf.json-lib:json-lib:2.4:jdk15')
+	// https://mvnrepository.com/artifact/redis.clients/jedis
+	compile group: 'redis.clients', name: 'jedis', version: '2.9.0'
+
 
 
 }
