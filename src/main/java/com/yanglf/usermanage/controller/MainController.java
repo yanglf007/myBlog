@@ -14,6 +14,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -37,7 +38,12 @@ public class MainController {
     }
 
     @GetMapping("/index")
-    public ModelAndView index( @RequestParam(value = "pageIndex",required = false,defaultValue = "0") int pageIndex,
+    public String firstpage(){
+        return "redirect:/index/0";
+    }
+
+    @GetMapping("/index/{pageIndex}")
+    public ModelAndView index( @PathVariable(value = "pageIndex",required = false) int pageIndex,
                                @RequestParam(value = "pageSize",required = false,defaultValue = "4") int pageSize,Model model){
         Sort sort = new Sort(Sort.Direction.DESC,"createTime");
 

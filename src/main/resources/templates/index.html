@@ -4,7 +4,6 @@
 <head th:replace="~{fragments/header :: header}">
     <title th:text="${title}"></title>
 
-
 </head>
 <body>
 
@@ -41,7 +40,15 @@
 
                     </div>
                 </div>
-                <div th:replace="~{fragments/page :: page}"></div>
+                <nav class="pagination" role="navigation">
+                    <a class="newer-posts" th:href="'/index/'+${page.getNumber()-1}" th:if="${page.hasPrevious()}">
+                        <i class="fa fa-angle-left" ></i>
+                    </a>
+                    <span class="page-number" th:inline="text">第[[${page.getNumber()+1}]]页/共[[${page.getTotalPages()}]]页</span>
+                    <a class="older-posts" th:href="'/index/'+${page.getNumber()+1}" th:if="${page.hasNext()}">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                </nav>
                 <div style="height: 50px"></div>
             </div>
         </div>
