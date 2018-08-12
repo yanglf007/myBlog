@@ -14,6 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -142,11 +143,17 @@ public class UserController {
 
     @PostMapping("{username}/avator/upload")
     @PreAuthorize("authentication.name.equals(#username)")
-    public ResponseEntity<String> upload(@RequestParam("file") MultipartFile uploadFile, @PathVariable String username, HttpServletRequest request) throws IOException {
-
+    public String upload(@RequestParam("file") MultipartFile uploadFile, @PathVariable String username, HttpServletRequest request) throws IOException {
+        String originalFilename = uploadFile.getOriginalFilename();
+        String substring = originalFilename.substring(originalFilename.lastIndexOf("."));
         InputStream inputStream = uploadFile.getInputStream();
-        String filename = UUID.randomUUID().toString().replaceAll("-", "")+".jpg";
-        FTPUtils.upload(inputStream, filename,avatarPath,remoteIP,ftpUser,ftpPwd);
-        return ResponseEntity.status(HttpStatus.OK).body("http://132.232.14.175/avatar/"+filename);
+        String filename = UUID.randomUUID().toString().replaceAll("-", "")+substring;
+        boolean flag = FTPUtils.uploadLocalFile(inputStream, filename, avatarPath, remoteIP, ftpUser, ftpPwd);
+        if (flag){
+            BlogUser user = (BlogUser)userDetailsService.loadUserByUsername(username);
+            user.setAvator("http://132.232.14.175/avatar/"+filename);
+            userService.update(user);
+        }
+        return "redirect:/user/"+username+"/profile";
     }
 }

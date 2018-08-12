@@ -40,7 +40,7 @@ public class PicController {
 
         String fileName = UUID.randomUUID().toString().replaceAll("-", "")+suffix;
 
-        FTPUtils.upload(file.getInputStream(), fileName,blogPicPath,remoteIP,ftpUser,ftpPwd);
+        FTPUtils.uploadLocalFile(file.getInputStream(), fileName,blogPicPath,remoteIP,ftpUser,ftpPwd);
 
         //保存
 

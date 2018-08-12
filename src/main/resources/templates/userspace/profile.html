@@ -2,6 +2,9 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head th:replace="~{fragments/header :: header}">
+    <link href="../../css/style.css" th:href="@{/css/bootstrap-table.css}" rel="stylesheet">
+
+
 </head>
 <body>
 
@@ -27,7 +30,7 @@
             <h5 class="card-header">个人设置</h5>
             <div class="card-block">
                 <form class="form-group" th:object="${userModel.user}" id="userForm"
-                      th:action="'/user'+${#authentication.name}+'/profile'" method="post">
+                      th:action="'/user/'+${#authentication.name}+'/profile'" method="post">
                     <input type="hidden" id="userId" name="id" th:value="*{id}">
                     <div class="form-group">
                         <label for="username">账号</label>
@@ -63,31 +66,50 @@
     </div>
 </div>
 
-<!-- The modal -->
-<div class="modal fade" id="flipFlop" tabindex="-1" role="dialog"
-     aria-labelledby="modalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="modalLabel">编辑头像</h4>
-                <button type="button" class="close" data-dismiss="modal"
-                        aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+<!-- 弹出层遮罩 -->
+<div id="layer-mask" class="layer-mask"></div>
+<!-- 弹出层窗体 -->
+<div id="layer-pop" class="layer-pop" >
+    <!-- 弹出层关闭按钮 -->
+    <div id="layer-close" class="layer-close">×</div>
+    <!-- 弹出层内容区域 -->
+    <div id="layer-content" class="layer-content" style="margin-left: 50px">
 
+    </div>
+</div>
+
+<!-- 登录窗体 -->
+<div id="loginHtml" style="display:none;">
+    <!-- 登录窗体 -->
+    <form id="avatorForm" th:action="'/user/' + ${#authentication.name}+ '/avator/upload'" method="post" enctype="multipart/form-data">
+        <div class="login" >
+            <h4 class="title">头像修改</h4>
+            <div class="item">
+                <label>文件</label>
+                <input id="file" class="file" name="file" type="file"/>
+                <p class="error-msg"></p>
             </div>
-            <div class="modal-body" id="avatorFormContainer"></div>
-            <div class="modal-footer">
-                <button class="btn btn-primary" data-dismiss="modal" id="submitEditAvator"
-                        data-th-attr="userName=${userModel.user.username}">提交</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+            <div class="item">
+                <label>&nbsp;</label>
+                <button id="loginSubmitBtn" type="submit" th:text="提交" class="btn btn-primary"/>
             </div>
         </div>
-    </div>
+    </form>
+
 </div>
 
 
 <div th:replace="~{fragments/footer :: footer}">...</div>
 
+<script>
+    $(function () {
+        $("#loginSubmitBtn").on('click',function () {
+            console.log("hell world");
+            alert(" hello world ");
+        })
+
+    })
+</script>
 </body>
 </html>
