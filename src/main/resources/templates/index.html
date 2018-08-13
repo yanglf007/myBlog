@@ -4,6 +4,9 @@
 <head th:replace="~{fragments/header :: header}">
     <title th:text="${title}"></title>
 
+    <style type="text/css">
+
+    </style>
 </head>
 <body>
 
@@ -29,11 +32,16 @@
                             <p class="card-text" th:text="${blog.summary}"></p>
                             <!--<p class="card-text" th:utext="${blog.htmlContent}"></p>-->
                             <div class="card-text row" style="margin-left: 10px">
-                                <a href="#" class="card-link" th:text="${blog.user.name}"></a>
+                                <a href="#" style="color: #373d41!important; font-family:PingFangSC-Medium!important;" class="card-link" th:text="${blog.user.name}"></a>
+<!--
                                 <div th:text="发表于+${blog.createTime}" style="margin-left: 10px"></div>
-                                <i class="fa fa-eye" aria-hidden="true" style="margin-left: 10px" >210</i>
-                                <i class="fa fa-heart-o" aria-hidden="true">10</i>
-                                <i class="fa fa-comment-o" aria-hidden="true">110</i>
+-->
+
+                                <div th:text="发表于+${#dates.format(blog.createTime,'yyyy-MM-dd HH:mm:ss')}"
+                                style="margin-left: 10px"></div>
+
+
+                                <div style="margin-left: 10px">    48人浏览</div>
                             </div>
                         </div>
 
