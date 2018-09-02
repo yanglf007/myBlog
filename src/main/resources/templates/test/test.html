@@ -3,39 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 </head>
 <body>
 
 
-<div class="navbar">
-    <div class="navbar-inner">
-        <div class="container">
-            <ul class="nav">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Tutorials<b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                    <li><a href="#">PHP</a></li>
-                    <li><a href="#">MySQL</a></li>
-                    <li><a href="#">JavaScript</a></li>
-                    <li><a href="#">HTML5</a></li>
-                </ul>
-                </li>
-            </ul>
-        </div>
-    </div>
+<div class="bd-example" data-example-id="">
+    <ol class="breadcrumb">
+        <li class="active">Home</li>
+    </ol>
+    <ol class="breadcrumb">
+        <li><a href="#">Home</a></li>
+        <li class="active">Library</li>
+    </ol>
+    <ol class="breadcrumb" style="margin-bottom: 5px;">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Library</a></li>
+        <li class="active">Data</li>
+    </ol>
 </div>
-<div class="container-fluid">
-    <h1>Dropdown Example下拉菜单实例</h1>
-</div>
-<!--
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('.dropdown-toggle').dropdown();
-    });
-</script>
--->
 
-<script src="../jquery.min.js"></script>
-<script src="../bootstrap.min.js"></script>
+<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -6,6 +6,7 @@ import com.yanglf.usermanage.demain.BlogUser;
 import com.yanglf.usermanage.service.AuthorityService;
 import com.yanglf.usermanage.service.BlogService;
 import com.yanglf.usermanage.service.UserService;
+import com.yanglf.usermanage.utils.AccountCheckUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -79,12 +80,15 @@ public class MainController {
      */
 
 
-    @PostMapping(value = "/register")
+    @PostMapping(value = "/register" )
     public String register(BlogUser user, Model model){
         List<Authority>authorities = new ArrayList<>();
         authorities.add(authorityService.getAuthorityById(2L));
         user.setAuthorities(authorities);
         user.setEncodePassword(user.getPassword());
+
+        //注册之前判断账号的有效性
+        AccountCheckUtil.check(user);
         userService.save(user);
         model.addAttribute("title","登录页面");
         return "redirect:/login";

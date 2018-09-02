@@ -2,6 +2,7 @@ package com.yanglf.usermanage.controller;
 
 import com.yanglf.usermanage.demain.BlogUser;
 import com.yanglf.usermanage.service.UserService;
+import com.yanglf.usermanage.utils.AccountCheckUtil;
 import com.yanglf.usermanage.utils.FTPUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -115,6 +116,7 @@ public class UserController {
         if (!matches){
             blogUser.setEncodePassword(user.getPassword());
         }
+        AccountCheckUtil.check(user);
         userService.save(user);
         return "redirect:/user/"+username+"/profile";
     }

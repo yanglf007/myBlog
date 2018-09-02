@@ -40,16 +40,6 @@ $(function () {
         });
     });
 
-    $("#md").markdown({
-        language: 'zh',
-        fullscreen: {
-            enable: true
-        },
-        resize:'vertical',
-        localStorage:'md',
-        imgurl: 'http://localhost:8080',
-        base64url: 'http://localhost:8080'
-    });
 
 
 

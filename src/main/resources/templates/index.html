@@ -3,17 +3,30 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head th:replace="~{fragments/header :: header}">
     <title th:text="${title}"></title>
+<style>
 
-    <style type="text/css">
+</style>
 
-    </style>
+
 </head>
 <body>
 
 
+
     <div class="container blog-content-container">
+
         <div class="row">
             <div class="col-md-10" style=" position:relative;margin-bottom: 20px">
+                <div  data-example-id="" style="margin-top: 20px">
+
+                    <ol class="breadcrumb" style="margin-bottom: 5px;">
+                        <li style="margin-left: 10px"><a href="#">推荐阅读</a></li>
+                        <li style="margin-left: 10px"><a href="#">Java语言</a></li>
+                        <li style="margin-left: 10px">数据库</li>
+                        <li style="margin-left: 10px">框架知识</li>
+                        <li style="margin-left: 10px">前端知识</li>
+                    </ol>
+                </div>
                 <div th:each="blog : ${blogModel.blogList}">
                     <div class="card mb-4" >
                         <div class="card-block" style="margin-left: 10px">
