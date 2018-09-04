@@ -7,6 +7,8 @@ import com.yanglf.usermanage.service.AuthorityService;
 import com.yanglf.usermanage.service.BlogService;
 import com.yanglf.usermanage.service.UserService;
 import com.yanglf.usermanage.utils.AccountCheckUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -26,6 +28,7 @@ import java.util.List;
 @Controller
 public class MainController {
 
+    Logger logger = LoggerFactory.getLogger(MainController.class);
     @Autowired
     private UserService userService;
     @Autowired

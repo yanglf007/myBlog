@@ -31,6 +31,9 @@ dependencies {
 	compile group: 'com.google.guava', name: 'guava', version: '25.1-jre'
 	compile('org.springframework.boot:spring-boot-starter-security')
 	compile('org.springframework.boot:spring-boot-starter-cache')
+// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-aop
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-aop', version: '2.0.3.RELEASE'
+	compile group: 'org.springframework.boot', name: 'spring-boot-devtools'
 
 	// 添加   Thymeleaf Spring Security 依赖，与 Thymeleaf 版本一致都是 3.x
 	compile('org.thymeleaf.extras:thymeleaf-extras-springsecurity4:3.0.2.RELEASE')
@@ -62,6 +65,5 @@ dependencies {
 
 // https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient
 	compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.2'
-
 
 }
