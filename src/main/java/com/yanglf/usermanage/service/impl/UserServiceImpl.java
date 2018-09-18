@@ -1,6 +1,6 @@
 package com.yanglf.usermanage.service.impl;
 
-import com.yanglf.usermanage.demain.BlogUser;
+import com.yanglf.usermanage.domain.BlogUser;
 import com.yanglf.usermanage.repository.UserRepository;
 import com.yanglf.usermanage.service.UserService;
 import com.yanglf.usermanage.utils.MD5Utils;

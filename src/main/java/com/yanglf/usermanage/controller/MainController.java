@@ -1,8 +1,8 @@
 package com.yanglf.usermanage.controller;
 
-import com.yanglf.usermanage.demain.Authority;
-import com.yanglf.usermanage.demain.Blog;
-import com.yanglf.usermanage.demain.BlogUser;
+import com.yanglf.usermanage.domain.Authority;
+import com.yanglf.usermanage.domain.Blog;
+import com.yanglf.usermanage.domain.BlogUser;
 import com.yanglf.usermanage.service.AuthorityService;
 import com.yanglf.usermanage.service.BlogService;
 import com.yanglf.usermanage.service.UserService;

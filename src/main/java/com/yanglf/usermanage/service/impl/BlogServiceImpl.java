@@ -1,6 +1,6 @@
 package com.yanglf.usermanage.service.impl;
 
-import com.yanglf.usermanage.demain.Blog;
+import com.yanglf.usermanage.domain.Blog;
 import com.yanglf.usermanage.repository.BlogRepository;
 import com.yanglf.usermanage.service.BlogService;
 import org.springframework.beans.BeanUtils;

@@ -1,6 +1,6 @@
 package com.yanglf.usermanage.service;
 
-import com.yanglf.usermanage.demain.BlogUser;
+import com.yanglf.usermanage.domain.BlogUser;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;

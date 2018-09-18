@@ -1,6 +1,6 @@
 package com.yanglf.usermanage.service;
 
-import com.yanglf.usermanage.demain.Authority;
+import com.yanglf.usermanage.domain.Authority;
 import org.springframework.stereotype.Service;
 
 @Service

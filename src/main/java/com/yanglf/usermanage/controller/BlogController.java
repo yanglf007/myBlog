@@ -1,7 +1,7 @@
 package com.yanglf.usermanage.controller;
 
-import com.yanglf.usermanage.demain.Blog;
-import com.yanglf.usermanage.demain.BlogUser;
+import com.yanglf.usermanage.domain.Blog;
+import com.yanglf.usermanage.domain.BlogUser;
 import com.yanglf.usermanage.repository.BlogRepository;
 import com.yanglf.usermanage.service.BlogService;
 import com.yanglf.usermanage.vo.ResponseMessage;
@@ -11,13 +11,9 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.util.HashMap;
-import java.util.Map;
 
 @Controller
 @RequestMapping("/")

@@ -1,6 +1,6 @@
 package com.yanglf.usermanage.repository;
 
-import com.yanglf.usermanage.demain.BlogUser;
+import com.yanglf.usermanage.domain.BlogUser;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;

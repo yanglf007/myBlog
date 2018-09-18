@@ -1,6 +1,6 @@
 package com.yanglf.usermanage.service.impl;
 
-import com.yanglf.usermanage.demain.Authority;
+import com.yanglf.usermanage.domain.Authority;
 import com.yanglf.usermanage.repository.AuthorityRepository;
 import com.yanglf.usermanage.service.AuthorityService;
 import org.springframework.beans.factory.annotation.Autowired;

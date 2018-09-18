@@ -1,6 +1,6 @@
 package com.yanglf.usermanage.controller;
 
-import com.yanglf.usermanage.demain.BlogUser;
+import com.yanglf.usermanage.domain.BlogUser;
 import com.yanglf.usermanage.service.UserService;
 import com.yanglf.usermanage.utils.AccountCheckUtil;
 import com.yanglf.usermanage.utils.FTPUtils;
@@ -12,10 +12,7 @@ import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
