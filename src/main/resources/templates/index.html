@@ -62,11 +62,11 @@
                     </div>
                 </div>
                 <nav class="pagination" role="navigation">
-                    <a class="newer-posts" th:href="'/index/'+${page.getNumber()-1}" th:if="${page.hasPrevious()}">
+                    <a class="newer-posts" th:href="'/index/'+${page.prePage}" th:if="${page.hasPreviousPage}">
                         <i class="fa fa-angle-left" ></i>
                     </a>
-                    <span class="page-number" th:inline="text">第[[${page.getNumber()+1}]]页/共[[${page.getTotalPages()}]]页</span>
-                    <a class="older-posts" th:href="'/index/'+${page.getNumber()+1}" th:if="${page.hasNext()}">
+                    <span class="page-number" th:inline="text">第[[${page.pageNum}]]页/共[[${page.pages}]]页</span>
+                    <a class="older-posts" th:href="'/index/'+${page.nextPage}" th:if="${page.hasNextPage}">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 </nav>
