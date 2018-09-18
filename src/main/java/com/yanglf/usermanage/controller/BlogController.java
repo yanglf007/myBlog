@@ -2,7 +2,6 @@ package com.yanglf.usermanage.controller;
 
 import com.yanglf.usermanage.domain.Blog;
 import com.yanglf.usermanage.domain.BlogUser;
-import com.yanglf.usermanage.repository.BlogRepository;
 import com.yanglf.usermanage.service.BlogService;
 import com.yanglf.usermanage.vo.ResponseMessage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +20,7 @@ public class BlogController {
 
     @Autowired
     private UserDetailsService userDetailsService;
-    @Autowired
-    private BlogRepository blogRepository;
+
 
     @Autowired
     private BlogService blogService;
@@ -44,7 +42,7 @@ public class BlogController {
     @PreAuthorize("authentication.name.equals(#username)")
     public ResponseEntity<ResponseMessage> save(@PathVariable String username, @RequestBody Blog blog){
         BlogUser user = (BlogUser) userDetailsService.loadUserByUsername(username);
-        blog.setUser(user);
+        blog.setUserId(user.getId());
         blogService.save(blog);
         String redirectUrl = "/blogs/"+username+"/"+blog.getId();
         return ResponseEntity.ok().body(new ResponseMessage(true,"处理成功",redirectUrl));
@@ -53,7 +51,7 @@ public class BlogController {
     @GetMapping("/blogs/{username}/editor/{id}")
     public ModelAndView getArtical(@PathVariable("username") String username,
                                    @PathVariable("id") Long id,Model model){
-        Blog blog = blogRepository.findById(id).get();
+        Blog blog = blogService.findById(id);
         model.addAttribute("blog",blog);
         return new ModelAndView("userspace/edit","blogModel",model);
     }
@@ -83,7 +81,7 @@ public class BlogController {
         }
 
         model.addAttribute("isBlogOwner", isBlogOwner);
-        model.addAttribute("blogModel",blogRepository.findById(id).get());
+        model.addAttribute("blogModel", blogService.findById(id));
 
         return "userspace/blog";
     }

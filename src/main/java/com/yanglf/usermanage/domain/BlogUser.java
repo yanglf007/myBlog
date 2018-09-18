@@ -1,91 +1,65 @@
 package com.yanglf.usermanage.domain;
 
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import java.io.Serializable;
-import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
-@Entity
-@Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"username"})})
-public class BlogUser implements UserDetails,Serializable{
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(length = 20)
+public class BlogUser implements UserDetails{
     private Integer id;
 
-    private String name;
-    @NotEmpty(message = "用户名不能为空")
-    @Column(nullable = false,length = 30)
-    private String username;
-    @NotEmpty(message = "密码能为空")
-    @Column(nullable = false,length = 100)
-    private String password;
-    @Column(length = 50)
-    private String solt;
-    @NotEmpty(message = "邮箱不能为空")
-    @Column(length = 30)
+    private String avator;
+
+    private Date createTime;
+
     private String email;
-    private String avator;//头像
 
-    @CreationTimestamp
-    private Timestamp createTime;
-    @UpdateTimestamp
-    private Timestamp updateTime;
+    private String name;
 
-    /**
-     * 状态 0 正常，1 冻结，2 销户
-     */
-    @Column(length = 1)
-    private String status="0";
+    private String password;
 
+    private String solt;
 
-    @ManyToMany(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
-    @JoinTable(name = "user_authority", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "authority_id", referencedColumnName = "id"))
-    private List<Authority> authorities;
+    private String status;
 
-    public String getStatus() {
-        return status;
+    private Date updateTime;
+
+    private String username;
+
+    private List<Authority> authorityList;
+
+    public void setAuthorityList(List<Authority> authorityList) {
+        this.authorityList = authorityList;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public List<Authority> getAuthorityList() {
+        return authorityList;
+    }
+    public void setEncodePassword(String password) {
+        PasswordEncoder encoder = new BCryptPasswordEncoder();
+        String encodePasswd = encoder.encode(password);
+        this.password = encodePasswd;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getAvator() {
-        return avator;
-    }
-
-    public void setAvator(String avator) {
+    public BlogUser(Integer id, String avator, Date createTime, String email, String name, String password, String solt, String status, Date updateTime, String username) {
+        this.id = id;
         this.avator = avator;
-    }
-
-    public String getSolt() {
-        return solt;
-    }
-
-    public void setSolt(String solt) {
+        this.createTime = createTime;
+        this.email = email;
+        this.name = name;
+        this.password = password;
         this.solt = solt;
+        this.status = status;
+        this.updateTime = updateTime;
+        this.username = username;
+    }
+
+    public BlogUser() {
+        super();
     }
 
     public Integer getId() {
@@ -96,67 +70,28 @@ public class BlogUser implements UserDetails,Serializable{
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getAvator() {
+        return avator;
     }
 
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
+    public void setAvator(String avator) {
+        this.avator = avator == null ? null : avator.trim();
     }
 
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setEncodePassword(String password) {
-        PasswordEncoder encoder = new BCryptPasswordEncoder();
-        String encodePasswd = encoder.encode(password);
-        this.password = encodePasswd;
-    }
-
-    public Timestamp getCreateTime() {
+    public Date getCreateTime() {
         return createTime;
     }
 
-    @Override
-    public String toString() {
-        return "BlogUser{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", solt='" + solt + '\'' +
-                ", email='" + email + '\'' +
-                ", avator='" + avator + '\'' +
-                ", createTime=" + createTime +
-                ", updateTime=" + updateTime +
-                ", status='" + status + '\'' +
-                ", authorities=" + authorities +
-                '}';
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email == null ? null : email.trim();
     }
 
     public String getName() {
@@ -164,32 +99,71 @@ public class BlogUser implements UserDetails,Serializable{
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name = name == null ? null : name.trim();
     }
 
-    public void setCreateTime(Timestamp createTime) {
-        this.createTime = createTime;
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
     }
 
-    public Timestamp getUpdateTime() {
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password == null ? null : password.trim();
+    }
+
+    public String getSolt() {
+        return solt;
+    }
+
+    public void setSolt(String solt) {
+        this.solt = solt == null ? null : solt.trim();
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status == null ? null : status.trim();
+    }
+
+    public Date getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(Timestamp updateTime) {
+    public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
 
-   public Collection<? extends GrantedAuthority> getAuthorities() {
-        List <SimpleGrantedAuthority> simpleGrantedAuthorities = new ArrayList<>();
-        for (GrantedAuthority authority:this.authorities){
-            simpleGrantedAuthorities.add(new SimpleGrantedAuthority(authority.getAuthority()));
-        }
-        return authorities;
+    public String getUsername() {
+        return username;
     }
 
+    @Override
+    public boolean isAccountNonExpired() {
+        return false;
+    }
 
+    @Override
+    public boolean isAccountNonLocked() {
+        return false;
+    }
 
-    public void setAuthorities(List<Authority> authorities) {
-        this.authorities = authorities;
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return false;
+    }
+
+    public void setUsername(String username) {
+        this.username = username == null ? null : username.trim();
     }
 }

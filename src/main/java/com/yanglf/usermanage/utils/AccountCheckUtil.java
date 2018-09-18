@@ -1,6 +1,6 @@
 package com.yanglf.usermanage.utils;
 
-import com.yanglf.usermanage.demain.BlogUser;
+import com.yanglf.usermanage.domain.BlogUser;
 import org.springframework.util.Assert;
 
 import java.util.regex.Pattern;

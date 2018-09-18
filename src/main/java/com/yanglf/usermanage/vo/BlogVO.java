@@ -1,6 +1,6 @@
 package com.yanglf.usermanage.vo;
 
-import com.yanglf.usermanage.demain.Blog;
+import com.yanglf.usermanage.domain.Blog;
 
 public class BlogVO extends Blog{
     private String name;

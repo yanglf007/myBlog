@@ -1,14 +1,14 @@
 package com.yanglf.usermanage.service.impl;
 
+import com.yanglf.usermanage.dao.BlogUserMapper;
+import com.yanglf.usermanage.dao.UserAuthorityMapper;
+import com.yanglf.usermanage.domain.Authority;
 import com.yanglf.usermanage.domain.BlogUser;
-import com.yanglf.usermanage.repository.UserRepository;
 import com.yanglf.usermanage.service.UserService;
 import com.yanglf.usermanage.utils.MD5Utils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -21,27 +21,28 @@ import java.util.List;
 public class UserServiceImpl implements UserService,UserDetailsService{
     private final static Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
     @Autowired
-    private UserRepository userRepository;
+    private BlogUserMapper blogUserMapper;
+    private UserAuthorityMapper userAuthorityMapper;
     @Override
     public void save(BlogUser user) {
         logger.info(user.toString());
-        userRepository.save(user);
+        blogUserMapper.insert(user);
     }
 
     @Override
     public void delete(Integer id) {
-        userRepository.deleteById(id);
+        blogUserMapper.deleteByPrimaryKey(id);
     }
 
     @Override
     public BlogUser update(BlogUser user) {
-        userRepository.save(user);
+        blogUserMapper.updateByPrimaryKey(user);
         return user;
     }
 
     @Override
     public BlogUser findById(Integer id) {
-        return userRepository.findById(id).get();
+        return blogUserMapper.selectByPrimaryKey(id);
     }
 
     @Override
@@ -51,7 +52,7 @@ public class UserServiceImpl implements UserService,UserDetailsService{
 
     @Override
     public void login(BlogUser user) {
-     BlogUser blogUser = userRepository.findBlogUserByUsername(user.getUsername());
+     BlogUser blogUser = blogUserMapper.selectByUserName(user.getUsername());
         if (blogUser!=null){
             String encode = MD5Utils.encode(user.getPassword() + blogUser.getSolt());
             if (blogUser.getPassword().equals(encode)){
@@ -65,15 +66,14 @@ public class UserServiceImpl implements UserService,UserDetailsService{
     }
 
     @Override
-    public Page<BlogUser> findBlogUserByUserNameLike(String username, Pageable pageable) {
-        username = username==null?"%%":"%"+username+"%";
-       return userRepository.findBlogUsersByUsernameLike(username,pageable);
+    public List<BlogUser> findBlogUserByUserNameLike(String username) {
+        return  blogUserMapper.selectLikeUserName(username);
 
     }
 
     public List<BlogUser> getList(){
         List<BlogUser> list = new ArrayList<>();
-        for (BlogUser user:userRepository.findAll()){
+        for (BlogUser user:blogUserMapper.selectAll()){
             list.add(user);
         }
         return list;
@@ -84,6 +84,10 @@ public class UserServiceImpl implements UserService,UserDetailsService{
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userRepository.findBlogUserByUsername(username);
+
+        BlogUser blogUser = blogUserMapper.selectByUserName(username);
+        List<Authority> authorities = userAuthorityMapper.selectByuserId(blogUser.getId());
+        blogUser.setAuthorityList(authorities);
+        return blogUser;
     }
 }

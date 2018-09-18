@@ -1,7 +1,7 @@
 package com.yanglf.usermanage.service.impl;
 
 import com.yanglf.usermanage.domain.Authority;
-import com.yanglf.usermanage.repository.AuthorityRepository;
+import com.yanglf.usermanage.dao.AuthorityMapper;
 import com.yanglf.usermanage.service.AuthorityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
@@ -11,10 +11,10 @@ import org.springframework.stereotype.Service;
 public class AuthorityServiceImpl implements AuthorityService {
 
     @Autowired
-   private AuthorityRepository authorityRepository;
+   private AuthorityMapper authorityMapper;
     @Override
     @Cacheable(cacheNames = "AuthoritygetAuthorityById")
     public Authority getAuthorityById(Long id) {
-        return authorityRepository.findById(id).get();
+        return authorityMapper.selectByPrimaryKey(id);
     }
 }

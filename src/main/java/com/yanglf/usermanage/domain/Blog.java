@@ -1,102 +1,26 @@
 package com.yanglf.usermanage.domain;
 
-import org.hibernate.annotations.CreationTimestamp;
+import java.util.Date;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
-import java.io.Serializable;
-import java.sql.Timestamp;
-
-@Entity
-
-public class Blog implements Serializable{
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(length = 20)
+public class Blog {
     private Long id;
 
-    @NotEmpty(message = "标题不能为空")
-    @Size(min = 2,max = 300)
-    @Column(length = 150,nullable = false)
-    private String title;
-
-    @NotEmpty(message = "摘要不能为空")
-    @Size(min = 5,max = 500)
-    @Column(nullable = false)
-    private String summary;
-
-    @Lob
-    @Basic(fetch = FetchType.LAZY)
-    @NotEmpty(message = "内容不能为空")
-    @Size(min = 2)
-    @Column(nullable = false)
-    private String content;
-
-    @Lob
-    @Basic(fetch = FetchType.LAZY)
-    @NotEmpty(message = "内容不能为空")
-    @Size(min = 2)
-    @Column(nullable = false)
-    private String htmlContent;
-
-
-     @OneToOne(cascade = CascadeType.DETACH,fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private BlogUser user;
-
-    @CreationTimestamp
-    private Timestamp createTime;
-
-    @Column(name = "reading")
-    private Long reading;
-
-    @Column(name = "comments")
     private Long comments;
 
-    @Column(name = "likes")
+    private Date createTime;
+
     private Long likes;
 
-    public Long getId() {
-        return id;
-    }
+    private Long reading;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    private String summary;
 
-    public String getTitle() {
-        return title;
-    }
+    private String title;
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+    private Integer userId;
 
-    public String getSummary() {
-        return summary;
-    }
-
-    public void setSummary(String summary) {
-        this.summary = summary;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public void setHtmlContent(String htmlContent) {
-        this.htmlContent = htmlContent;
-    }
-
-    public String getHtmlContent() {
-        return htmlContent;
-    }
+    private String content;
+    private String htmlContent;
 
     public BlogUser getUser() {
         return user;
@@ -106,20 +30,44 @@ public class Blog implements Serializable{
         this.user = user;
     }
 
-    public Timestamp getCreateTime() {
-        return createTime;
+    private BlogUser user;
+    public String getContent() {
+        return content;
     }
 
-    public void setCreateTime(Timestamp createTime) {
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public String getHtmlContent() {
+        return htmlContent;
+    }
+
+    public void setHtmlContent(String htmlContent) {
+        this.htmlContent = htmlContent;
+    }
+
+    public Blog(Long id, Long comments, Date createTime, Long likes, Long reading, String summary, String title, Integer userId) {
+        this.id = id;
+        this.comments = comments;
         this.createTime = createTime;
-    }
-
-    public Long getReading() {
-        return reading;
-    }
-
-    public void setReading(Long reading) {
+        this.likes = likes;
         this.reading = reading;
+        this.summary = summary;
+        this.title = title;
+        this.userId = userId;
+    }
+
+    public Blog() {
+        super();
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Long getComments() {
@@ -130,11 +78,51 @@ public class Blog implements Serializable{
         this.comments = comments;
     }
 
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
     public Long getLikes() {
         return likes;
     }
 
     public void setLikes(Long likes) {
         this.likes = likes;
+    }
+
+    public Long getReading() {
+        return reading;
+    }
+
+    public void setReading(Long reading) {
+        this.reading = reading;
+    }
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary == null ? null : summary.trim();
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title == null ? null : title.trim();
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 }

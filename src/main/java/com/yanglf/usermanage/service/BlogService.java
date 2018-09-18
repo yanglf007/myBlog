@@ -1,15 +1,13 @@
 package com.yanglf.usermanage.service;
 
 import com.yanglf.usermanage.domain.Blog;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import java.util.List;
 @Service
 public interface BlogService {
-    Page<Blog> findAll(Pageable pageable);
+    List<Blog> findAll();
     void save(Blog blog);
     void remove(Long id);
-    Optional<Blog> findById(Long aLong);
+    Blog findById(Long aLong);
 }

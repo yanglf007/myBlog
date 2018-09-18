@@ -1,32 +1,17 @@
 package com.yanglf.usermanage.domain;
 
-
-import org.springframework.security.core.GrantedAuthority;
-
-import javax.persistence.*;
-
-@Entity
-public class Authority implements GrantedAuthority {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY  )
-    @Column(length = 20)
+public class Authority {
     private Long id;
 
-    @Column(nullable = false)
     private String name;
 
-    @Override
-    public String getAuthority() {
-        return name;
+    public Authority(Long id, String name) {
+        this.id = id;
+        this.name = name;
     }
 
-    @Override
-    public String toString() {
-        return "Authority{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
+    public Authority() {
+        super();
     }
 
     public Long getId() {
@@ -42,6 +27,6 @@ public class Authority implements GrantedAuthority {
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name = name == null ? null : name.trim();
     }
 }

@@ -1,5 +1,7 @@
 package com.yanglf.usermanage.controller;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.yanglf.usermanage.domain.BlogUser;
 import com.yanglf.usermanage.service.UserService;
 import com.yanglf.usermanage.utils.AccountCheckUtil;
@@ -9,9 +11,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -82,12 +81,11 @@ public class UserController {
                              Model model){
 
         logger.info("username: "+username+" pageIndex:"+pageIndex+" pageSize:"+pageSize);
-        Pageable pageable = PageRequest.of(pageIndex, pageSize);
-        Page<BlogUser> page = userService.findBlogUserByUserNameLike(username, pageable);
-        List<BlogUser> content = page.getContent();
-        logger.info("page:",page.toString());
+        PageHelper.startPage(pageIndex,pageSize);
+        List<BlogUser> userList = userService.findBlogUserByUserNameLike(username);
+        PageInfo page = new PageInfo(userList);
         model.addAttribute("page",page);
-        model.addAttribute("userList",content);
+        model.addAttribute("userList",userList);
         return new ModelAndView(async==true?"users/list :: #mainContainerReplace":"users/list","userModel",model);
 
     }
