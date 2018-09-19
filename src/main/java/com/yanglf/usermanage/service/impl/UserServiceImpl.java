@@ -22,6 +22,7 @@ public class UserServiceImpl implements UserService,UserDetailsService{
     private final static Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
     @Autowired
     private BlogUserMapper blogUserMapper;
+    @Autowired
     private UserAuthorityMapper userAuthorityMapper;
     @Override
     public void save(BlogUser user) {

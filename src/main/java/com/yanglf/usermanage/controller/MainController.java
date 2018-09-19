@@ -84,10 +84,9 @@ public class MainController {
         List<Authority>authorities = new ArrayList<>();
         authorities.add(authorityService.getAuthorityById(2L));
         user.setAuthorityList(authorities);
-        user.setEncodePassword(user.getPassword());
-
         //注册之前判断账号的有效性
         AccountCheckUtil.check(user);
+        user.setEncodePassword(user.getPassword());
         userService.save(user);
         model.addAttribute("title","登录页面");
         return "redirect:/login";
@@ -100,6 +99,7 @@ public class MainController {
 
     @PostMapping("/login")
     public String login(BlogUser user, Model model){
+
         userService.login(user);
         model.addAttribute("username",user.getUsername());
         model.addAttribute("result","登录成功");

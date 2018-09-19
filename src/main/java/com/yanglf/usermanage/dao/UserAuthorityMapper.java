@@ -19,7 +19,7 @@ public interface UserAuthorityMapper {
             "select",
             "id, name",
             "from authority a,user_authority b",
-            "where a.id=b.authority_id and b.id = #{id,jdbcType=BIGINT}"
+            "where a.id=b.authority_id and b.user_id = #{userId,jdbcType=BIGINT}"
     })
     @Results({
             @Result(column="id", property="id", jdbcType=JdbcType.BIGINT, id=true),

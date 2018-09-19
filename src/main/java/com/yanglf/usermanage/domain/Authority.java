@@ -1,6 +1,8 @@
 package com.yanglf.usermanage.domain;
 
-public class Authority {
+import org.springframework.security.core.GrantedAuthority;
+
+public class Authority implements GrantedAuthority {
     private Long id;
 
     private String name;
@@ -28,5 +30,10 @@ public class Authority {
 
     public void setName(String name) {
         this.name = name == null ? null : name.trim();
+    }
+
+    @Override
+    public String getAuthority() {
+        return name;
     }
 }
