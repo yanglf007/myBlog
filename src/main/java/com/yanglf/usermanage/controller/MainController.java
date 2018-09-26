@@ -13,6 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -78,7 +79,7 @@ public class MainController {
      * 注册用户
      */
 
-
+    @Transactional(rollbackFor = Exception.class)
     @PostMapping(value = "/register" )
     public String register(BlogUser user, Model model){
         List<Authority>authorities = new ArrayList<>();

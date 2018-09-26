@@ -44,6 +44,15 @@ public class BlogUser implements UserDetails {
     private Timestamp updateTime;
 
     private String solt;
+    private Timestamp createTime;
+
+    public Timestamp getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Timestamp createTime) {
+        this.createTime = createTime;
+    }
 
     public String getSolt() {
         return solt;
@@ -64,6 +73,16 @@ public class BlogUser implements UserDetails {
     private List<Authority> authorityList;
 
     private String avator;
+
+    private char status;
+
+    public char getStatus() {
+        return status;
+    }
+
+    public void setStatus(char status) {
+        this.status = status;
+    }
 
     public String getAvator() {
         return avator;
