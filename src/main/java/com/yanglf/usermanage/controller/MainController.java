@@ -49,7 +49,7 @@ public class MainController {
     public ModelAndView index( @PathVariable(value = "pageIndex",required = false) int pageIndex,
                                @RequestParam(value = "pageSize",required = false,defaultValue = "4") int pageSize,Model model){
 
-        PageHelper.startPage(pageIndex,pageSize);
+        PageHelper.startPage(pageIndex,pageSize,"id desc");
         List<Blog> list = blogService.findAll();
         PageInfo page = new PageInfo(list);
         model.addAttribute("page", page);

@@ -33,7 +33,7 @@
     where id = #{id,jdbcType=BIGINT}
   </delete>
   <insert id="insert"  useGeneratedKeys="true" keyProperty="id"
-          parameterType="com.yanglf.usermanage.domain.BlogWithBLOBs">
+          parameterType="com.yanglf.usermanage.domain.Blog">
     insert into blog ( comments, create_time,
       likes, reading, summary, 
       title, user_id, content, 
@@ -44,7 +44,7 @@
       #{htmlContent,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective"  useGeneratedKeys="true" keyProperty="id"
-          parameterType="com.yanglf.usermanage.domain.BlogWithBLOBs">
+          parameterType="com.yanglf.usermanage.domain.Blog">
     insert into blog
     <trim prefix="(" suffix=")" suffixOverrides=",">
 
@@ -107,7 +107,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.yanglf.usermanage.domain.BlogWithBLOBs">
+  <update id="updateByPrimaryKeySelective" parameterType="com.yanglf.usermanage.domain.Blog">
     update blog
     <set>
       <if test="comments != null">
@@ -140,7 +140,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.yanglf.usermanage.domain.BlogWithBLOBs">
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.yanglf.usermanage.domain.Blog">
     update blog
     set comments = #{comments,jdbcType=BIGINT},
       create_time = #{createTime,jdbcType=TIMESTAMP},
