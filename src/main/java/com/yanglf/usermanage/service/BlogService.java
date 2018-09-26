@@ -10,4 +10,6 @@ public interface BlogService {
     void save(Blog blog);
     void remove(Long id);
     Blog findById(Long aLong);
+    int updateByPrimaryKeySelective(Blog record);
+    void readingIncrease(Long id);
 }

@@ -50,5 +50,15 @@ public class BlogServiceImpl implements BlogService{
         return blog;
     }
 
+    @Override
+    public int updateByPrimaryKeySelective(Blog record) {
+        return blogMapper.updateByPrimaryKeySelective(record);
+    }
+
+    @Override
+    public void readingIncrease(Long id) {
+        blogMapper.readingIncrease(id);
+    }
+
 
 }

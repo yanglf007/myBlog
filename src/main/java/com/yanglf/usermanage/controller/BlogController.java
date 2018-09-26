@@ -5,6 +5,7 @@ import com.yanglf.usermanage.domain.BlogUser;
 import com.yanglf.usermanage.service.BlogService;
 import com.yanglf.usermanage.vo.ResponseMessage;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/")
 public class BlogController {
 
+    @Qualifier("userServiceImpl")
     @Autowired
     private UserDetailsService userDetailsService;
 
@@ -55,7 +57,6 @@ public class BlogController {
     public ModelAndView getArtical(@PathVariable("username") String username,
                                    @PathVariable("id") Long id,Model model){
         Blog blog = blogService.findById(id);
-
         model.addAttribute("blog",blog);
         return new ModelAndView("userspace/edit","blogModel",model);
     }
@@ -71,7 +72,7 @@ public class BlogController {
     @GetMapping("/blogs/{username}/{id}")
     public String getBlogById(@PathVariable("username") String username,@PathVariable("id") Long id, Model model) {
         // 每次读取，简单的可以认为阅读量增加1次
-       // blogService.readingIncrease(id);
+        blogService.readingIncrease(id);
 
         boolean isBlogOwner = false;
 
@@ -83,9 +84,8 @@ public class BlogController {
                 isBlogOwner = true;
             }
         }
-
         model.addAttribute("isBlogOwner", isBlogOwner);
-        model.addAttribute("blogModel", blogService.findById(id));
+        model.addAttribute("blogModel",blogService.findById(id));
 
         return "userspace/blog";
     }
