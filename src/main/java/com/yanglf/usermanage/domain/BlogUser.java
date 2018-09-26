@@ -74,13 +74,15 @@ public class BlogUser implements UserDetails {
 
     private String avator;
 
-    private char status;
+    private  String status;
 
-    public char getStatus() {
+
+
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(char status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
@@ -174,6 +176,25 @@ public class BlogUser implements UserDetails {
                 ", authorityList=" + authorityList +
                 ", avatar='" + avator + '\'' +
                 '}';
+    }
+
+    public BlogUser(Integer id, String avator,
+                    Timestamp createTime, String email, String name,
+                    String password, String solt, String status, Timestamp updateTime,
+                    String username) {
+        this.id = id;
+        this.avator = avator;
+        this.createTime = createTime;
+        this.email = email;
+        this.name = name;
+        this.password = password;
+        this.solt = solt;
+        this.status = status;
+        this.updateTime = updateTime;
+        this.username = username;
+    }
+
+    public BlogUser() {
     }
 }
 

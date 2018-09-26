@@ -2,38 +2,25 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yanglf.usermanage.dao.BlogMapper">
   <resultMap id="BaseResultMap" type="com.yanglf.usermanage.domain.Blog">
-    <constructor>
-      <idArg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <arg column="comments" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
-      <arg column="likes" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <arg column="reading" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <arg column="summary" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="title" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="user_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
-    </constructor>
+      <id column="id" javaType="java.lang.Long" property="id" jdbcType="BIGINT"></id>
+      <result column="comments" javaType="java.lang.Long" property="comments" jdbcType="BIGINT" />
+      <result column="create_time" javaType="java.util.Date" property="createTime" jdbcType="TIMESTAMP" />
+      <result column="likes" javaType="java.lang.Long" property="likes" jdbcType="BIGINT" />
+      <result column="reading" javaType="java.lang.Long" property="reading" jdbcType="BIGINT" />
+      <result column="summary" javaType="java.lang.String" property="summary" jdbcType="VARCHAR" />
+      <result column="title" javaType="java.lang.String" property="title" jdbcType="VARCHAR" />
+      <result column="user_id" javaType="java.lang.Integer" property="userId" jdbcType="INTEGER" />
+      <result column="content" javaType="java.lang.String" property="content" jdbcType="LONGVARCHAR" />
+      <result column="html_content" javaType="java.lang.String" property="htmlContent" jdbcType="LONGVARCHAR" />
   </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.yanglf.usermanage.domain.BlogWithBLOBs">
-    <constructor>
-      <idArg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <arg column="comments" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
-      <arg column="likes" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <arg column="reading" javaType="java.lang.Long" jdbcType="BIGINT" />
-      <arg column="summary" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="title" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="user_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
-      <arg column="content" javaType="java.lang.String" jdbcType="LONGVARCHAR" />
-      <arg column="html_content" javaType="java.lang.String" jdbcType="LONGVARCHAR" />
-    </constructor>
-  </resultMap>
+
   <sql id="Base_Column_List">
     id, comments, create_time, likes, reading, summary, title, user_id
   </sql>
   <sql id="Blob_Column_List">
     content, html_content
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     ,

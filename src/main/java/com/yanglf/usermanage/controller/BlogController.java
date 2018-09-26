@@ -27,6 +27,7 @@ public class BlogController {
     private BlogService blogService;
 
 
+
     @GetMapping("/blogs/{username}/editor")
     public ModelAndView createBolg(@PathVariable String username, Model model){
         model.addAttribute("blog",new Blog());
@@ -54,6 +55,7 @@ public class BlogController {
     public ModelAndView getArtical(@PathVariable("username") String username,
                                    @PathVariable("id") Long id,Model model){
         Blog blog = blogService.findById(id);
+
         model.addAttribute("blog",blog);
         return new ModelAndView("userspace/edit","blogModel",model);
     }

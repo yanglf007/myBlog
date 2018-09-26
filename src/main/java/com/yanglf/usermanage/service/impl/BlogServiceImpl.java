@@ -3,6 +3,7 @@ package com.yanglf.usermanage.service.impl;
 import com.yanglf.usermanage.dao.BlogMapper;
 import com.yanglf.usermanage.domain.Blog;
 import com.yanglf.usermanage.service.BlogService;
+import com.yanglf.usermanage.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,8 @@ public class BlogServiceImpl implements BlogService{
     @Autowired
     private BlogMapper blogMapper;
 
+    @Autowired
+    private UserService userService;
 
     @Override
     public List<Blog> findAll() {
@@ -41,8 +44,10 @@ public class BlogServiceImpl implements BlogService{
 
     @Override
     public Blog findById(Long aLong) {
-
-        return blogMapper.selectByPrimaryKey(aLong);
+        Blog blog = blogMapper.selectByPrimaryKey(aLong);
+        Integer userId = blog.getUserId();
+        blog.setUser(userService.findById(userId));
+        return blog;
     }
 
 
