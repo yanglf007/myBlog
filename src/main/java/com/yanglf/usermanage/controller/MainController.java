@@ -45,7 +45,7 @@ public class MainController {
     }
 
     @GetMapping("/index/{pageIndex}")
-    public ModelAndView index( @PathVariable(value = "pageIndex",required = false) int pageIndex,
+    public ModelAndView index   ( @PathVariable(value = "pageIndex",required = false) int pageIndex,
                                @RequestParam(value = "pageSize",required = false,defaultValue = "4") int pageSize,Model model){
 
         PageHelper.startPage(pageIndex,pageSize);

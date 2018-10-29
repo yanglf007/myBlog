@@ -44,6 +44,15 @@ public class BlogUser implements UserDetails {
     private Timestamp updateTime;
 
     private String solt;
+    private Timestamp createTime;
+
+    public Timestamp getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Timestamp createTime) {
+        this.createTime = createTime;
+    }
 
     public String getSolt() {
         return solt;
@@ -64,6 +73,18 @@ public class BlogUser implements UserDetails {
     private List<Authority> authorityList;
 
     private String avator;
+
+    private  String status;
+
+
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public String getAvator() {
         return avator;
@@ -110,9 +131,9 @@ public class BlogUser implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<SimpleGrantedAuthority> simpleAuthorities = new ArrayList<>();
-        for (GrantedAuthority authority : this.authorityList){
+    /*    for (GrantedAuthority authority : this.authorityList){
             simpleAuthorities.add(new SimpleGrantedAuthority(authority.getAuthority()));
-        }
+        }*/
         return simpleAuthorities;
     }
 
@@ -155,6 +176,25 @@ public class BlogUser implements UserDetails {
                 ", authorityList=" + authorityList +
                 ", avatar='" + avator + '\'' +
                 '}';
+    }
+
+    public BlogUser(Integer id, String avator,
+                    Timestamp createTime, String email, String name,
+                    String password, String solt, String status, Timestamp updateTime,
+                    String username) {
+        this.id = id;
+        this.avator = avator;
+        this.createTime = createTime;
+        this.email = email;
+        this.name = name;
+        this.password = password;
+        this.solt = solt;
+        this.status = status;
+        this.updateTime = updateTime;
+        this.username = username;
+    }
+
+    public BlogUser() {
     }
 }
 

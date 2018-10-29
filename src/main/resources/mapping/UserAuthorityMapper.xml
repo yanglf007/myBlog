@@ -12,7 +12,7 @@
     insert into user_authority (user_id, authority_id)
     values (#{userId,jdbcType=INTEGER}, #{authorityId,jdbcType=BIGINT})
   </insert>
-  <insert id="insertSelective"
+  <insert id="insertSelective"  
           parameterType="com.yanglf.usermanage.domain.UserAuthority">
     insert into user_authority
     <trim prefix="(" suffix=")" suffixOverrides=",">

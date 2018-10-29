@@ -1,10 +1,7 @@
 package com.yanglf.usermanage.dao;
 
 import com.yanglf.usermanage.domain.Blog;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
 
 import java.util.List;
@@ -50,4 +47,9 @@ public interface BlogMapper {
 
     })
     List<Blog> selectAll();
+
+    @Update("update blog set reading=reading+1 where id=#{id}")
+    void readingIncrease(Long id);
+
+    Blog findAllById(Long id);
 }

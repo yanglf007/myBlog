@@ -1,49 +1,113 @@
 package com.yanglf.usermanage.vo;
 
-import com.yanglf.usermanage.domain.Blog;
+import java.util.Date;
 
-public class BlogVO extends Blog{
-    private String name;
-    private String username;
-    private String email;
-    private String avator;
+/**
+ * @author yanglf
+ */
+public class BlogVO{
+    private Long id;
 
-    public String getName() {
-        return name;
+    private Long comments;
+
+    private Date createTime;
+
+    private Long likes;
+
+    private Long reading;
+
+    private String summary;
+
+    private String title;
+
+    private Integer userId;
+
+    private String content;
+
+    @Override
+    public String toString() {
+        return "BlogVO{" +
+                "id=" + id +
+                ", comments=" + comments +
+                ", createTime=" + createTime +
+                ", likes=" + likes +
+                ", reading=" + reading +
+                ", summary='" + summary + '\'' +
+                ", title='" + title + '\'' +
+                ", userId=" + userId +
+                ", content='" + content + '\'' +
+                '}';
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public Long getId() {
+        return id;
     }
 
-    public String getUsername() {
-        return username;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public Long getComments() {
+        return comments;
     }
 
-    public String getEmail() {
-        return email;
+    public void setComments(Long comments) {
+        this.comments = comments;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public String getAvator() {
-        return avator;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
-    public void setAvator(String avator) {
-        this.avator = avator;
+    public Long getLikes() {
+        return likes;
     }
 
-    public BlogVO(String name, String username, String email, String avator) {
-        this.name = name;
-        this.username = username;
-        this.email = email;
-        this.avator = avator;
+    public void setLikes(Long likes) {
+        this.likes = likes;
+    }
+
+    public Long getReading() {
+        return reading;
+    }
+
+    public void setReading(Long reading) {
+        this.reading = reading;
+    }
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 }

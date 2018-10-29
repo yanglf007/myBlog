@@ -67,7 +67,7 @@ public class BlogController {
     @GetMapping("/blogs/{username}/{id}")
     public String getBlogById(@PathVariable("username") String username,@PathVariable("id") Long id, Model model) {
         // 每次读取，简单的可以认为阅读量增加1次
-       // blogService.readingIncrease(id);
+        blogService.readingIncrease(id);
 
         boolean isBlogOwner = false;
 
@@ -81,7 +81,9 @@ public class BlogController {
         }
 
         model.addAttribute("isBlogOwner", isBlogOwner);
-        model.addAttribute("blogModel", blogService.findById(id));
+        Blog blog = blogService.findById(id);
+
+        model.addAttribute("blogModel", blog);
 
         return "userspace/blog";
     }

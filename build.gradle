@@ -1,6 +1,7 @@
 buildscript {
 	ext {
 		springBootVersion = '2.0.3.RELEASE'
+		springCloudVersion = 'Finchley.SR2'
 	}
 	repositories {
 		maven {url 'http://maven.aliyun.com/nexus/content/groups/public/'}
@@ -75,6 +76,10 @@ dependencies {
 
 	// https://mvnrepository.com/artifact/com.github.pagehelper/pagehelper-spring-boot-starter
 	compile group: 'com.github.pagehelper', name: 'pagehelper-spring-boot-starter', version: '1.2.5'
+	implementation('org.springframework.cloud:spring-cloud-starter-netflix-eureka-client')
+
+
+	compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-feign', version: '1.4.6.RELEASE'
 
 }
 
@@ -84,6 +89,11 @@ def getDbProperties = {
 		properties.load(inputStream)
 	}
 	properties
+}
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
 }
 
 task mybatisGenerate << {
